@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mother Teresa Memorial School</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #FFFFFF;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: #0A2A66; /* Navy Blue */
+      color: white;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Navigation */
+    nav a {
+      margin: 0 10px;
+      color: #F2C94C; /* Gold */
+      text-decoration: none;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      color: white;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Section titles */
+    section h1 {
+      color: #0A2A66;
+      margin-top: 40px;
+      font-size: 2.2rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    section h1:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: #F2C94C;
+    }
+
+    /* Hero - REMOVED GRADIENT OVERLAY */
+    .hero {
+      background: url('https://i.ibb.co/Y4sKrkNp/Videoshot-20251209-202555.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+      padding: 20px;
+      position: relative;
+    }
+
+    /* Adding a dark overlay behind text only for better readability */
+    .hero h2 {
+      margin-bottom: 20px;
+      font-size: 2.8rem;
+      font-weight: bold;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+      font-weight: 500;
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.9);
+      position: relative;
+      z-index: 2;
+    }
+
+    .content {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    /* Cards */
+    .card {
+      background: white;
+      margin: 20px auto;
+      padding: 25px;
+      border-radius: 10px;
+      border: 2px solid #0A2A66;
+      max-width: 800px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .card:hover {
+      background: #f0f5ff;
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Principal Section - Updated Layout without photo */
+    .principal-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .principal-message {
+      width: 100%;
+      max-width: 800px;
+      text-align: left;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      border-left: 5px solid #F2C94C;
+    }
+
+    .principal-message p {
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .principal-signature {
+      text-align: right;
+      font-style: italic;
+      font-weight: bold;
+      color: #0A2A66;
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+
+    /* Gallery */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .gallery img {
+      width: 30%;
+      min-width: 250px;
+      border-radius: 10px;
+      border: 3px solid #F2C94C;
+      transition: transform 0.3s ease;
+      object-fit: cover;
+      height: 200px;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Contact Form */
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    form input,
+    form textarea {
+      margin-bottom: 15px;
+      padding: 12px;
+      border: 2px solid #0A2A66;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    form button {
+      background: #0A2A66;
+      color: #F2C94C;
+      padding: 12px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    form button:hover {
+      background: #F2C94C;
+      color: #0A2A66;
+      transform: translateY(-2px);
+    }
+
+    /* Popup Overlay Styles */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-content {
+      background-color: white;
+      width: 90%;
+      max-width: 900px;
+      height: 85%;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .popup-header {
+      background: #0A2A66;
+      color: white;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .popup-header h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      transition: background 0.3s ease;
+    }
+
+    .close-btn:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .popup-body {
+      padding: 25px;
+      overflow-y: auto;
+      flex-grow: 1;
+      text-align: left;
+    }
+
+    .popup-body h3 {
+      color: #0A2A66;
+      border-bottom: 2px solid #F2C94C;
+      padding-bottom: 10px;
+      margin-top: 25px;
+    }
+
+    .popup-body h3:first-child {
+      margin-top: 0;
+    }
+
+    .popup-body p {
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .popup-body img {
+      max-width: 100%;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+
+    /* Button Styles */
+    .btn {
+      display: inline-block;
+      background: #0A2A66;
+      color: #F2C94C;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+      margin: 8px;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background: #F2C94C;
+      color: #0A2A66;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Academic Programs List */
+    .program-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .program-list li {
+      margin-bottom: 15px;
+    }
+
+    /* Teacher Cards */
+    .teacher-card {
+      background: white;
+      margin: 15px auto;
+      padding: 20px;
+      border-radius: 10px;
+      border: 2px solid #0A2A66;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      max-width: 600px;
+      display: flex;
+      align-items: center;
+      text-align: left;
+    }
+
+    .teacher-card:hover {
+      background: #f0f5ff;
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .teacher-photo-small {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid #0A2A66;
+      margin-right: 20px;
+      object-fit: cover;
+      background-color: #f0f0f0;
+    }
+
+    .teacher-info {
+      flex-grow: 1;
+    }
+
+    .teacher-info h4 {
+      margin: 0 0 5px 0;
+      color: #0A2A66;
+      font-size: 1.2rem;
+    }
+
+    .teacher-info p {
+      margin: 0;
+      color: #555;
+      font-size: 1rem;
+    }
+
+    /* Teacher Profile in Popup */
+    .teacher-profile {
+      background: white;
+      margin: 20px 0;
+      padding: 20px;
+      border-radius: 10px;
+      border: 2px solid #0A2A66;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+
+    .teacher-profile-photo {
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+    }
+
+    .teacher-profile-photo img {
+      width: 100%;
+      max-width: 200px;
+      border-radius: 10px;
+      border: 4px solid #F2C94C;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .teacher-profile-details {
+      flex: 2;
+      min-width: 300px;
+    }
+
+    .teacher-profile-details h4 {
+      margin-top: 0;
+      color: #0A2A66;
+      font-size: 1.4rem;
+      border-bottom: 2px solid #F2C94C;
+      padding-bottom: 8px;
+    }
+
+    .teacher-profile-details ul {
+      padding-left: 20px;
+    }
+
+    .teacher-profile-details li {
+      margin-bottom: 8px;
+    }
+
+    /* Principal Popup Layout without photo */
+    .principal-popup {
+      background: white;
+      margin: 20px 0;
+      padding: 20px;
+      border-radius: 10px;
+      border: 2px solid #0A2A66;
+    }
+
+    .principal-popup-details {
+      width: 100%;
+    }
+
+    /* Chatbot Floating Button */
+    .chatbot-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: #0A2A66;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(10, 42, 102, 0.3);
+      z-index: 9999;
+      transition: all 0.3s ease;
+      border: 3px solid #F2C94C;
+    }
+
+    .chatbot-button:hover {
+      background: #F2C94C;
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(10, 42, 102, 0.4);
+    }
+
+    .chatbot-button:hover .robot-icon {
+      color: #0A2A66;
+    }
+
+    .robot-icon {
+      font-size: 28px;
+      color: #F2C94C;
+      transition: all 0.3s ease;
+    }
+
+    /* Chatbot Container */
+    .chatbot-container {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 350px;
+      height: 500px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      z-index: 9998;
+      display: none;
+      overflow: hidden;
+      border: 3px solid #0A2A66;
+    }
+
+    .chatbot-header {
+      background: #0A2A66;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chatbot-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .close-chatbot {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: background 0.3s ease;
+    }
+
+    .close-chatbot:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .chatbot-iframe {
+      width: 100%;
+      height: calc(100% - 60px);
+      border: none;
+      border-radius: 0 0 12px 12px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero {
+        height: 300px;
+        font-size: 2rem;
+        padding: 15px;
+      }
+      
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+      
+      .gallery img {
+        width: 100%;
+        max-width: 400px;
+        height: 250px;
+      }
+      
+      .teacher-card {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .teacher-photo-small {
+        margin-right: 0;
+        margin-bottom: 15px;
+      }
+      
+      .teacher-profile {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .principal-message {
+        padding: 15px;
+      }
+
+      .chatbot-container {
+        width: 300px;
+        height: 450px;
+        right: 20px;
+        bottom: 90px;
+      }
+
+      .chatbot-button {
+        right: 20px;
+        bottom: 20px;
+        width: 55px;
+        height: 55px;
+      }
+
+      .robot-icon {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        height: 250px;
+        font-size: 1.8rem;
+      }
+      
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      .chatbot-container {
+        width: 280px;
+        height: 400px;
+        right: 10px;
+        left: 10px;
+        margin: 0 auto;
+      }
+
+      .chatbot-button {
+        right: 15px;
+        bottom: 15px;
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER + NAVIGATION -->
+  <header class="centered">
+    <h1>Mother Teresa Memorial School (Dummy Site)</h1>
+    <nav>
+      <a href="#" data-popup="about">About</a>
+      <a href="#" data-popup="academic">Academic</a>
+      <a href="#" data-popup="principal">Principal</a>
+      <a href="#" data-popup="teachers">Our Faculty</a>
+      <a href="#" data-popup="gallery">Gallery</a>
+      <a href="#" data-popup="contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HOME SECTION -->
+  <section id="home" class="hero">
+    <h2>Where Learning Comes Alive!</h2>
+    <p>Empowering students with quality education, values, and holistic development</p>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <h1>About Our School</h1>
+    <div class="content">
+      <div class="card" data-popup="about">
+        <p>Mother Teresa Memorial School is administrated by Bishop Conrad De Vito Memorial Catholic Education Society a registered society, Bishop's House. 63 Cantt. Bareilly. The School is owned by the CATHOLIC DIOCESE OF BARIELLY, a registered society under society's registration Act XXI of 1860. The patron saint of the school is St. Teresa of Kolkata an inspired educator who gave importance to moral education.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACADEMIC SECTION -->
+  <section id="academic">
+    <h1>Academic Programs</h1>
+    <div class="content">
+      <div class="card">
+        <ul class="program-list">
+          <li><button class="btn" data-popup="academic">Primary Education</button></li>
+          <li><button class="btn" data-popup="academic">Secondary Education</button></li>
+          <li><button class="btn" data-popup="academic">Science & Arts Streams</button></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPAL SECTION -->
+  <section id="principal">
+    <h1>Message from the Principal</h1>
+    <div class="content">
+      <div class="principal-container">
+        <div class="principal-message">
+          <p>"True education releases capacities, develops analytical abilities, confidence, will, and goal-setting competencies and instills the vision serving the best interests of the community."</p>
+          
+          <p>Today children in India are growing in a more challenging and demanding environment. The rate of change in every sphere is rapid with the enhanced knowledge exchange and technology development, the world is going flatter. Globalization demands a new dimension to our approach to education. We, thus have to recognize the need for a globally relevant education. Such as education would mean imparting skills that would develop mental agility in individuals to confidently interact and work in diverse environs or situations.</p>
+          
+          <p>The Mother Teresa Memorial School curriculum is oriented such that students embody self-confidence and "Out of the box" thought process. In all our endeavors, the focus is to strengthen competencies needed to be autonomous, life-long learners. We make concerted efforts for a holistic development of the students who enter the school portals. A wide range of multi-dimensional activities are organized which go a long way in propelling a self-belief, confidence in decision making and problem solving along with chiselling of soft skills.</p>
+          
+          <p>The school curriculum is oriented to bolster the physical, emotional, social and cultural needs of the students. A strong requirement today is to simultaneously weave a firm moral fibre in the student's personality. The key to this goal is to pursue a value based education process. All our school activities are based on a participatory spirit that reduces the inhibition levels of the students and thus assists the students and teachers with a conviction that "we can do it", we promote the joy and excitement of learning and also enjoy the pleasure of our achievements.</p>
+          
+          <p>We gratefully acknowledge your trust and confidence placed in Mother Teresa Memorial School, by giving us an opportunity to serve you and your children in a better way, and last but not least our parents, whose trust inspires us to move ahead….!</p>
+          
+          <p>I wish you and your child a very rewarding experience at Mother Teresa Memorial School, Kargaina, Bareilly.</p>
+          
+          <div class="principal-signature">
+            - Sr. Sali Thomas<br>
+            <em>Principal</em>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEACHERS SECTION -->
+  <section id="teachers">
+    <h1>Our Faculty</h1>
+    <div class="content">
+      <!-- Position 1 -->
+      <div class="teacher-card" data-popup="teachers">
+        <!-- Akhilesh Kumar Sharma Photo -->
+        <img src="https://i.ibb.co/TDDfyTJr/akhilesh.jpg" 
+             alt="Akhilesh Kumar Sharma" class="teacher-photo-small">
+        <div class="teacher-info">
+          <h4>Akhilesh Kumar Sharma</h4>
+          <p>Physics Teacher</p>
+          <p><em>15 years of teaching experience</em></p>
+        </div>
+      </div>
+      
+      <!-- Position 2 -->
+      <div class="teacher-card" data-popup="teachers">
+        <!-- Kishor Kumar Photo -->
+        <img src="https://i.ibb.co/Zpm6Fppt/kishor.jpg" 
+             alt="Kishor Kumar" class="teacher-photo-small">
+        <div class="teacher-info">
+          <h4>Kishor Kumar</h4>
+          <p>Chemistry Teacher</p>
+          <p><em>5 years of teaching experience</em></p>
+        </div>
+      </div>
+      
+      <!-- Position 3 -->
+      <div class="teacher-card" data-popup="teachers">
+        <!-- Yadvendra Singh Yadav Photo -->
+        <img src="https://i.ibb.co/205DfKVN/yadvendra.jpg" 
+             alt="Yadvendra Singh Yadav" class="teacher-photo-small">
+        <div class="teacher-info">
+          <h4>Yadvendra Singh Yadav</h4>
+          <p>Computer Science Teacher</p>
+          <p><em>9 years of teaching experience</em></p>
+        </div>
+      </div>
+      
+      <!-- Position 4 - Coordinator -->
+      <div class="teacher-card" data-popup="teachers">
+        <!-- Abhishek Anthony Photo -->
+        <img src="https://i.ibb.co/5XYsQGy8/Whats-App-Image-2025-12-08-at-01-31-08-59ada7f4.jpg" 
+             alt="Abhishek Anthony" class="teacher-photo-small">
+        <div class="teacher-info">
+          <h4>Abhishek Anthony</h4>
+          <p>Coordinator</p>
+          <p><em>Specialized in Civil Engineering & Music</em></p>
+        </div>
+      </div>
+      
+      <!-- Position 5 -->
+      <div class="teacher-card" data-popup="teachers">
+        <!-- Sweta Sharma Photo -->
+        <img src="https://i.ibb.co/fGMhb2dw/sweta.jpg" 
+             alt="Sweta Sharma" class="teacher-photo-small">
+        <div class="teacher-info">
+          <h4>Sweta Sharma</h4>
+          <p>Biology Teacher</p>
+          <p><em>10 years of teaching experience</em></p>
+        </div>
+      </div>
+      
+      <!-- Position 6 -->
+      <div class="teacher-card" data-popup="teachers">
+        <!-- Jai Narayan Photo -->
+        <img src="https://i.ibb.co/v6NY14PX/jainarayan.jpg" 
+             alt="Jai Narayan" class="teacher-photo-small">
+        <div class="teacher-info">
+          <h4>Jai Narayan</h4>
+          <p>Economics Teacher</p>
+          <p><em>12 years of teaching experience</em></p>
+        </div>
+      </div>
+      
+      <!-- Position 7 -->
+      <div class="teacher-card" data-popup="teachers">
+        <!-- Yashpal Gangwar Photo -->
+        <img src="https://i.ibb.co/84tCmMz3/yashpal.jpg" 
+             alt="Yashpal Gangwar" class="teacher-photo-small">
+        <div class="teacher-info">
+          <h4>Yashpal Gangwar</h4>
+          <p>Social Science Teacher</p>
+          <p><em>21 years of teaching experience</em></p>
+        </div>
+      </div>
+      
+      <!-- Position 8 -->
+      <div class="teacher-card" data-popup="teachers">
+        <!-- Samuel Prince Photo -->
+        <img src="https://i.ibb.co/pvX8tJxK/prince.jpg" 
+             alt="Samuel Prince" class="teacher-photo-small">
+        <div class="teacher-info">
+          <h4>Samuel Prince</h4>
+          <p>Science Teacher</p>
+          <p><em>15 years of teaching experience</em></p>
+        </div>
+      </div>
+      
+      <!-- Position 9 - New Teacher -->
+      <div class="teacher-card" data-popup="teachers">
+        <!-- Rohit Bhagat Photo -->
+        <img src="https://i.ibb.co/bMzST7z6/Whats-App-Image-2025-12-08-at-01-31-10-ee4ca8af.jpg" 
+             alt="Rohit Bhagat" class="teacher-photo-small">
+        <div class="teacher-info">
+          <h4>Rohit Bhagat</h4>
+          <p>Physical Education Teacher</p>
+          <p><em>7 years of teaching experience</em></p>
+        </div>
+      </div>
+      
+      <!-- Position 10 - New Teacher -->
+      <div class="teacher-card" data-popup="teachers">
+        <!-- Sanjeev Kumar Photo -->
+        <img src="https://i.ibb.co/G4G3zW0g/Whats-App-Image-2025-12-08-at-22-02-33-b2259e89.jpg" 
+             alt="Sanjeev Kumar" class="teacher-photo-small">
+        <div class="teacher-info">
+          <h4>Sanjeev Kumar</h4>
+          <p>English Teacher</p>
+          <p><em>20 years of teaching experience</em></p>
+        </div>
+      </div>
+      
+      <!-- Position 11 - New Teacher -->
+      <div class="teacher-card" data-popup="teachers">
+        <!-- Kamlesh Shankhdhar Photo -->
+        <img src="https://i.ibb.co/4n9N2tX8/Whats-App-Image-2025-12-08-at-01-31-10-e6d23eef.jpg" 
+             alt="Kamlesh Shankhdhar" class="teacher-photo-small">
+        <div class="teacher-info">
+          <h4>Kamlesh Shankhdhar</h4>
+          <p>Physical Education Teacher</p>
+          <p><em>25 years of teaching experience</em></p>
+        </div>
+      </div>
+      
+      <!-- Position 12 - New Teacher -->
+      <div class="teacher-card" data-popup="teachers">
+        <!-- Vijay Kumar Patel Photo -->
+        <img src="https://i.ibb.co/whS6g7jF/Whats-App-Image-2025-12-08-at-01-31-17-47a6bd22.jpg" 
+             alt="Vijay Kumar Patel" class="teacher-photo-small">
+        <div class="teacher-info">
+          <h4>Vijay Kumar Patel</h4>
+          <p>Social Science Teacher</p>
+          <p><em>21 years of teaching experience</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY SECTION -->
+  <section id="gallery">
+    <h1>Gallery</h1>
+    <div class="content">
+      <div class="gallery">
+        <!-- Your working gallery photos -->
+        <img src="https://i.ibb.co/HTNwgyWD/IMG-20251204-141346649-HDR.jpg" alt="School Building">
+        <img src="https://i.ibb.co/b5kjK3jL/IMG-20251204-141440481-HDR.jpg" alt="Basketball Court">
+        <img src="https://i.ibb.co/FqBYhjrB/IMG-20251111-113149022-HDR.jpg" alt="School Playground">
+        <img src="https://i.ibb.co/20TxPqdp/Whats-App-Image-2025-12-08-at-01-31-13-0b290149.jpg" alt="Science Laboratory">
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <h1>Contact Us</h1>
+    <div class="content">
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <div style="margin-top: 30px;">
+        <h3 style="color: #0A2A66;">School Address</h3>
+        <p>Kargaina, Kareilly, Bareilly<br>Near Parag Milk Dairy<br>Uttar Pradesh, India</p>
+        <p><strong>Phone:</strong> +91-9457467998</p>
+        <p><strong>Email:</strong> info@motherteresaschool.edu.in</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- POPUP OVERLAY -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h2 id="popupTitle">Page Title</h2>
+        <button class="close-btn" id="closePopup">&times;</button>
+      </div>
+      <div class="popup-body" id="popupBody">
+        <!-- Popup content will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- CHATBOT FLOATING BUTTON -->
+  <div class="chatbot-button" id="chatbotButton">
+    <div class="robot-icon">🤖</div>
+  </div>
+
+  <!-- CHATBOT CONTAINER -->
+  <div class="chatbot-container" id="chatbotContainer">
+    <div class="chatbot-header">
+      <div class="chatbot-title">School Assistant Bot</div>
+      <button class="close-chatbot" id="closeChatbot">&times;</button>
+    </div>
+    <iframe 
+      src="https://cdn.botpress.cloud/webchat/v3.5/shareable.html?configUrl=https://files.bpcontent.cloud/2025/11/21/08/20251121080309-X548XSDZ.json" 
+      class="chatbot-iframe"
+      title="School Assistant Chatbot"
+      allow="microphone; camera">
+    </iframe>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const popupOverlay = document.getElementById('popupOverlay');
+      const popupTitle = document.getElementById('popupTitle');
+      const popupBody = document.getElementById('popupBody');
+      const closePopup = document.getElementById('closePopup');
+      
+      // Define popup content for each section
+      const popupContents = {
+        about: {
+          title: 'About Our School',
+          content: `
+            <h3>Our History</h3>
+            <p>The history of the Catholic Diocese of Bareilly goes back to January 1989 when existing as part of the Diocese of Lucknow it was separated and made a new Diocese. At present it includes 9 Districts of U.P. namely Bareilly, Shajahanpur, Pilibhit, Nainital, Almora, Udham Singh Nagar, Pithoragarh, Champavat and Bageshwar.</p>
+            
+            <h3>Our Mission</h3>
+            <p>To provide a holistic education that develops students intellectually, emotionally, socially, and physically, preparing them for the challenges of the future.</p>
+            
+            <h3>Our Values</h3>
+            <ul>
+              <li>Excellence in teaching and learning</li>
+              <li>Respect for diversity</li>
+              <li>Integrity and ethical behavior</li>
+              <li>Community engagement</li>
+              <li>Lifelong learning</li>
+            </ul>
+            
+            <h3>Facilities</h3>
+            <p>Our campus features state-of-the-art facilities including science laboratories, computer labs, a well-stocked library, sports grounds, and art studios.</p>
+            
+            <h3>Some Important Information</h3>
+            <p>This is a registered religious-charitable Society belonging to the Christian minority, whose chief objective is to render service to the people through education, health service and social work without discrimination of caste, creed and Language. M. Rev. Bishop Ignatius D'Souza who is the spiritual Head of the Catholic Community in these 9 districts is also the President of this Society. Under this parent Society, there is also the Bishop Conrad De Vito Memorial Catholic Education Society, a registered body under the chairmanship of Most Rev. Bishop Ignatius D'Souza. The aim of this society is to establish and administer educational institutions under the direction of Article 30 of the constitution. In various parts of the State to carry on the literacy mission, to impart education and value education, to make our young students responsible citizens of our country.</p>
+            
+            <p>There are a number of schools run by this Society Majority of which are Hindi medium in rural areas. They specially take care all the poor children, particularly the girls in interior villages. It takes great efforts to run Nonformal Education Centres and adult Literacy Center for non school going children.</p>
+            
+            <p>Mother Teresa Memorial School, Kareilly, Bareilly is one of the institutions run by this Society and has been imparting education to thousands of students. This is a well sought after school in the city as it is known for its quality education, discipline, value education and extracurricular activities. The school is located at Kargaina, Kareilly,Bareilly, Near Parag Milk Dairy.</p>
+          `
+        },
+        academic: {
+          title: 'Academic Programs',
+          content: `
+            <h3>Primary Education (Grades 1-5)</h3>
+            <p>Our primary program focuses on building strong foundations in literacy, numeracy, and social skills through engaging, hands-on learning experiences.</p>
+            
+            <h3>Middle School (Grades 6-8)</h3>
+            <p>Students explore a broad curriculum that includes mathematics, sciences, languages, social studies, and arts while developing critical thinking skills.</p>
+            
+            <h3>Secondary Education (Grades 9-12)</h3>
+            <p>Our secondary program prepares students for higher education with specialized tracks in Science and Arts, along with comprehensive college counseling.</p>
+            
+            <h3>Science Stream</h3>
+            <p>Focuses on Physics, Chemistry, Biology, and advanced Mathematics with extensive laboratory work and research opportunities.</p>
+            
+            <h3>Arts Stream</h3>
+            <p>Offers specialized courses in Literature, History, Political Science, Economics, and Fine Arts with opportunities for creative expression.</p>
+            
+            <h3>Extracurricular Activities</h3>
+            <p>We offer a wide range of clubs and activities including debate, robotics, music, drama, sports teams, and community service programs.</p>
+          `
+        },
+        principal: {
+          title: 'Message from the Principal',
+          content: `
+            <div class="principal-popup">
+              <div class="principal-popup-details">
+                <h4>Sr. Sali Thomas</h4>
+                <p><strong>Principal, Mother Teresa Memorial School</strong></p>
+                
+                <p>"True education releases capacities, develops analytical abilities, confidence, will, and goal-setting competencies and instills the vision serving the best interests of the community."</p>
+                
+                <p>Today children in India are growing in a more challenging and demanding environment. The rate of change in every sphere is rapid with the enhanced knowledge exchange and technology development, the world is going flatter. Globalization demands a new dimension to our approach to education. We, thus have to recognize the need for a globally relevant education.</p>
+                
+                <p>Such an education would mean imparting skills that would develop mental agility in individuals to confidently interact and work in diverse environs or situations. The Mother Teresa Memorial School curriculum is oriented such that students embody self-confidence and "Out of the box" thought process. In all our endeavors, the focus is to strengthen competencies needed to be autonomous, life-long learners.</p>
+                
+                <p>We make concerted efforts for a holistic development of the students who enter the school portals. A wide range of multi-dimensional activities are organized which go a long way in propelling a self-belief, confidence in decision making and problem solving along with chiselling of soft skills.</p>
+                
+                <p>The school curriculum is oriented to bolster the physical, emotional, social and cultural needs of the students. A strong requirement today is to simultaneously weave a firm moral fibre in the student's personality. The key to this goal is to pursue a value based education process.</p>
+                
+                <p>All our school activities are based on a participatory spirit that reduces the inhibition levels of the students and thus assists the students and teachers with a conviction that "we can do it", we promote the joy and excitement of learning and also enjoy the pleasure of our achievements.</p>
+                
+                <p>We gratefully acknowledge your trust and confidence placed in Mother Teresa Memorial School, by giving us an opportunity to serve you and your children in a better way, and last but not least our parents, whose trust inspires us to move ahead….!</p>
+                
+                <p>I wish you and your child a very rewarding experience at Mother Teresa Memorial School, Kargaina, Bareilly.</p>
+                
+                <p><strong>- Sr. Sali Thomas</strong></p>
+              </div>
+            </div>
+          `
+        },
+        teachers: {
+          title: 'Our Teaching Faculty',
+          content: `
+            <h3>Meet Our Dedicated Educators</h3>
+            <p>Our faculty consists of highly qualified professionals committed to student success. All teachers hold advanced degrees in their subject areas and participate in ongoing professional development.</p>
+            
+            <!-- Teacher 1 -->
+            <div class="teacher-profile">
+              <div class="teacher-profile-photo">
+                <!-- Akhilesh Kumar Sharma Photo in Popup -->
+                <img src="https://i.ibb.co/TDDfyTJr/akhilesh.jpg" 
+                     alt="Akhilesh Kumar Sharma">
+              </div>
+              <div class="teacher-profile-details">
+                <h4>Akhilesh Kumar Sharma – Physics</h4>
+                <p><strong>Qualifications:</strong></p>
+                <ul>
+                  <li>PGT (Physics)</li>
+                  <li>M.Tech (Nanotechnology), GGSIPU, Delhi</li>
+                  <li>MSc (Physics), MJPRU, Bareilly</li>
+                  <li>B.Ed.</li>
+                </ul>
+                <p><strong>Experience:</strong> 15 years in teaching Physics, with expertise in Engineering colleges and schools.</p>
+              </div>
+            </div>
+            
+            <!-- Teacher 2 -->
+            <div class="teacher-profile">
+              <div class="teacher-profile-photo">
+                <!-- Kishor Kumar Photo in Popup -->
+                <img src="https://i.ibb.co/Zpm6Fppt/kishor.jpg" 
+                     alt="Kishor Kumar">
+              </div>
+              <div class="teacher-profile-details">
+                <h4>Kishor Kumar – Chemistry</h4>
+                <p><strong>Qualifications:</strong></p>
+                <ul>
+                  <li>PGT (Chemistry)</li>
+                  <li>MSc (Chemistry)</li>
+                  <li>B.Ed.</li>
+                </ul>
+                <p><strong>Experience:</strong> 5 years of teaching experience in school.</p>
+              </div>
+            </div>
+            
+            <!-- Teacher 3 -->
+            <div class="teacher-profile">
+              <div class="teacher-profile-photo">
+                <!-- Yadvendra Singh Yadav Photo in Popup -->
+                <img src="https://i.ibb.co/205DfKVN/yadvendra.jpg" 
+                     alt="Yadvendra Singh Yadav">
+              </div>
+              <div class="teacher-profile-details">
+                <h4>Yadvendra Singh Yadav – Computer Science</h4>
+                <p><strong>Qualifications:</strong></p>
+                <ul>
+                  <li>PGT (Computer Science)</li>
+                  <li>MCA</li>
+                  <li>B.Ed.</li>
+                </ul>
+                <p><strong>Experience:</strong> 9 years of teaching experience in schools.</p>
+              </div>
+            </div>
+            
+            <!-- Coordinator - Position 4 -->
+            <div class="teacher-profile">
+              <div class="teacher-profile-photo">
+                <!-- Abhishek Anthony Photo in Popup -->
+                <img src="https://i.ibb.co/5XYsQGy8/Whats-App-Image-2025-12-08-at-01-31-08-59ada7f4.jpg" 
+                     alt="Abhishek Anthony">
+              </div>
+              <div class="teacher-profile-details">
+                <h4>Abhishek Anthony – Coordinator</h4>
+                <p><strong>Qualifications:</strong></p>
+                <ul>
+                  <li>Diploma in Civil Engineering</li>
+                  <li>B.Tech in Civil Engineering (Structural Analysis & Design)</li>
+                  <li>M.Tech in Civil Engineering (Eco Green Building)</li>
+                  <li>PGDCA in Computer Science</li>
+                  <li>Diploma in CAD & BIM Tools</li>
+                  <li>Prabhakar in Music (Vocal)</li>
+                  <li>Sound Engineering Certification</li>
+                </ul>
+                <p><strong>Role:</strong> As Coordinator, Abhishek Anthony oversees academic coordination and brings his expertise in both technical and creative fields to enhance our school's programs.</p>
+              </div>
+            </div>
+            
+            <!-- Teacher 5 -->
+            <div class="teacher-profile">
+              <div class="teacher-profile-photo">
+                <!-- Sweta Sharma Photo in Popup -->
+                <img src="https://i.ibb.co/fGMhb2dw/sweta.jpg" 
+                     alt="Sweta Sharma">
+              </div>
+              <div class="teacher-profile-details">
+                <h4>Sweta Sharma – Biology</h4>
+                <p><strong>Qualifications:</strong></p>
+                <ul>
+                  <li>PGT (Biology)</li>
+                  <li>M.Sc. (Zoology)</li>
+                  <li>Biochemistry</li>
+                  <li>B.Ed.</li>
+                </ul>
+                <p><strong>Experience:</strong> 10 years of teaching experience in school.</p>
+              </div>
+            </div>
+            
+            <!-- Teacher 6 -->
+            <div class="teacher-profile">
+              <div class="teacher-profile-photo">
+                <!-- Jai Narayan Photo in Popup -->
+                <img src="https://i.ibb.co/v6NY14PX/jainarayan.jpg" 
+                     alt="Jai Narayan">
+              </div>
+              <div class="teacher-profile-details">
+                <h4>Jai Narayan – Economics</h4>
+                <p><strong>Qualifications:</strong></p>
+                <ul>
+                  <li>PGT (Economics)</li>
+                  <li>M.Com</li>
+                  <li>MA (Economics)</li>
+                  <li>MA (Education)</li>
+                  <li>CTET, UPTET, Army CSB (India Level)</li>
+                </ul>
+                <p><strong>Experience:</strong> 12 years of teaching experience in schools.</p>
+              </div>
+            </div>
+            
+            <!-- Teacher 7 -->
+            <div class="teacher-profile">
+              <div class="teacher-profile-photo">
+                <!-- Yashpal Gangwar Photo in Popup -->
+                <img src="https://i.ibb.co/84tCmMz3/yashpal.jpg" 
+                     alt="Yashpal Gangwar">
+              </div>
+              <div class="teacher-profile-details">
+                <h4>Yashpal Gangwar – Social Science</h4>
+                <p><strong>Qualifications:</strong></p>
+                <ul>
+                  <li>TGT (Social Science)</li>
+                  <li>MA (Sociology)</li>
+                  <li>B.Ed.</li>
+                </ul>
+                <p><strong>Experience:</strong> 21 years of teaching experience in schools.</p>
+              </div>
+            </div>
+            
+            <!-- Teacher 8 -->
+            <div class="teacher-profile">
+              <div class="teacher-profile-photo">
+                <!-- Samuel Prince Photo in Popup -->
+                <img src="https://i.ibb.co/pvX8tJxK/prince.jpg" 
+                     alt="Samuel Prince">
+              </div>
+              <div class="teacher-profile-details">
+                <h4>Samuel Prince – Science</h4>
+                <p><strong>Qualifications:</strong></p>
+                <ul>
+                  <li>TGT (Science)</li>
+                  <li>MA (Mathematics)</li>
+                  <li>B.Ed.</li>
+                </ul>
+                <p><strong>Experience:</strong> 15 years of teaching experience in schools.</p>
+              </div>
+            </div>
+            
+            <!-- Teacher 9 -->
+            <div class="teacher-profile">
+              <div class="teacher-profile-photo">
+                <!-- Rohit Bhagat Photo in Popup -->
+                <img src="https://i.ibb.co/bMzST7z6/Whats-App-Image-2025-12-08-at-01-31-10-ee4ca8af.jpg" 
+                     alt="Rohit Bhagat">
+              </div>
+              <div class="teacher-profile-details">
+                <h4>Rohit Bhagat – Physical Education</h4>
+                <p><strong>Qualifications:</strong></p>
+                <ul>
+                  <li>M.P.Ed (Master of Physical Education)</li>
+                </ul>
+                <p><strong>Experience:</strong> 7 years of teaching experience in Physical Education.</p>
+              </div>
+            </div>
+            
+            <!-- Teacher 10 -->
+            <div class="teacher-profile">
+              <div class="teacher-profile-photo">
+                <!-- Sanjeev Kumar Photo in Popup -->
+                <img src="https://i.ibb.co/G4G3zW0g/Whats-App-Image-2025-12-08-at-22-02-33-b2259e89.jpg" 
+                     alt="Sanjeev Kumar">
+              </div>
+              <div class="teacher-profile-details">
+                <h4>Sanjeev Kumar – English</h4>
+                <p><strong>Qualifications:</strong></p>
+                <ul>
+                  <li>M.A. (English)</li>
+                  <li>B.Ed.</li>
+                </ul>
+                <p><strong>Experience:</strong> 20 years of teaching experience in English language and literature.</p>
+              </div>
+            </div>
+            
+            <!-- Teacher 11 -->
+            <div class="teacher-profile">
+              <div class="teacher-profile-photo">
+                <!-- Kamlesh Shankhdhar Photo in Popup -->
+                <img src="https://i.ibb.co/4n9N2tX8/Whats-App-Image-2025-12-08-at-01-31-10-e6d23eef.jpg" 
+                     alt="Kamlesh Shankhdhar">
+              </div>
+              <div class="teacher-profile-details">
+                <h4>Kamlesh Shankhdhar – Physical Education</h4>
+                <p><strong>Qualifications:</strong></p>
+                <ul>
+                  <li>M.A. (Political Science)</li>
+                  <li>B.P.Ed (Bachelor of Physical Education)</li>
+                </ul>
+                <p><strong>Experience:</strong> 25 years of extensive experience in Physical Education and sports training.</p>
+              </div>
+            </div>
+            
+            <!-- Teacher 12 -->
+            <div class="teacher-profile">
+              <div class="teacher-profile-photo">
+                <!-- Vijay Kumar Patel Photo in Popup -->
+                <img src="https://i.ibb.co/whS6g7jF/Whats-App-Image-2025-12-08-at-01-31-17-47a6bd22.jpg" 
+                     alt="Vijay Kumar Patel">
+              </div>
+              <div class="teacher-profile-details">
+                <h4>Vijay Kumar Patel – Social Science</h4>
+                <p><strong>Qualifications:</strong></p>
+                <ul>
+                  <li>M.A. (Economics)</li>
+                  <li>B.Ed.</li>
+                </ul>
+                <p><strong>Experience:</strong> 21 years of teaching experience in Social Sciences.</p>
+              </div>
+            </div>
+          `
+        },
+        gallery: {
+          title: 'School Gallery',
+          content: `
+            <h3>Our School Facilities</h3>
+            <p>Explore our modern campus and facilities that provide an excellent learning environment for our students.</p>
+            
+            <img src="https://i.ibb.co/HTNwgyWD/IMG-20251204-141346649-HDR.jpg" alt="School Building">
+            <p><strong>Main School Building:</strong> Our modern school building with spacious classrooms and excellent infrastructure for quality education.</p>
+            
+            <img src="https://i.ibb.co/b5kjK3jL/IMG-20251204-141440481-HDR.jpg" alt="Basketball Court">
+            <p><strong>Sports Facilities:</strong> Well-maintained basketball court and sports grounds where students develop their athletic skills and sportsmanship.</p>
+            
+            <img src="https://i.ibb.co/FqBYhjrB/IMG-20251111-113149022-HDR.jpg" alt="School Playground">
+            <p><strong>Playground Area:</strong> Spacious playground for outdoor activities, games, and physical education classes.</p>
+            
+            <img src="https://i.ibb.co/20TxPqdp/Whats-App-Image-2025-12-08-at-01-31-13-0b290149.jpg" alt="Science Laboratory">
+            <p><strong>Science Laboratories:</strong> Fully equipped science laboratories for Physics, Chemistry, and Biology with modern equipment for hands-on learning.</p>
+            
+            <h3>More About Our Campus</h3>
+            <p>Our campus is designed to provide a holistic learning environment with state-of-the-art facilities. We have well-ventilated classrooms, computer labs, a well-stocked library, art rooms, and extensive sports facilities. The campus is maintained with green spaces and clean surroundings to ensure a healthy and positive atmosphere for our students.</p>
+          `
+        },
+        contact: {
+          title: 'Contact Us',
+          content: `
+            <h3>Get in Touch</h3>
+            <p>We welcome inquiries from prospective students and parents. Please feel free to contact us using the information below or by filling out the contact form.</p>
+            
+            <h3>School Address</h3>
+            <p>Kargaina, Kareilly, Bareilly<br>Near Parag Milk Dairy<br>Uttar Pradesh, India</p>
+            
+            <h3>Contact Information</h3>
+            <p><strong>Phone:</strong> +91-9457467998<br>
+            <strong>Email:</strong> info@motherteresaschool.edu.in<br>
+            <strong>Office Hours:</strong> Monday - Saturday: 8:00 AM - 4:00 PM</p>
+            
+            <h3>Send Us a Message</h3>
+            <form>
+              <input type="text" placeholder="Your Name" required>
+              <input type="email" placeholder="Your Email" required>
+              <input type="text" placeholder="Subject" required>
+              <textarea placeholder="Your Message" rows="5" required></textarea>
+              <button type="submit">Send Message</button>
+            </form>
+          `
+        }
+      };
+      
+      // Add click event listeners to all navigation links
+      const navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const popupId = this.getAttribute('data-popup');
+          
+          if (popupContents[popupId]) {
+            popupTitle.textContent = popupContents[popupId].title;
+            popupBody.innerHTML = popupContents[popupId].content;
+            popupOverlay.style.display = 'flex';
+          }
+        });
+      });
+      
+      // Add click event listeners to teacher cards
+      const teacherCards = document.querySelectorAll('.teacher-card');
+      teacherCards.forEach(card => {
+        card.addEventListener('click', function() {
+          const popupId = this.getAttribute('data-popup');
+          
+          if (popupContents[popupId]) {
+            popupTitle.textContent = popupContents[popupId].title;
+            popupBody.innerHTML = popupContents[popupId].content;
+            popupOverlay.style.display = 'flex';
+          }
+        });
+      });
+      
+      // Add click event listeners to academic program buttons
+      const academicButtons = document.querySelectorAll('.program-list .btn');
+      academicButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const popupId = this.getAttribute('data-popup');
+          
+          if (popupContents[popupId]) {
+            popupTitle.textContent = popupContents[popupId].title;
+            popupBody.innerHTML = popupContents[popupId].content;
+            popupOverlay.style.display = 'flex';
+          }
+        });
+      });
+      
+      // Add click event listener to About section card
+      const aboutCard = document.querySelector('#about .card');
+      aboutCard.addEventListener('click', function() {
+        const popupId = this.getAttribute('data-popup');
+        
+        if (popupContents[popupId]) {
+          popupTitle.textContent = popupContents[popupId].title;
+          popupBody.innerHTML = popupContents[popupId].content;
+          popupOverlay.style.display = 'flex';
+        }
+      });
+      
+      // Add click event listener to Principal section
+      const principalSection = document.querySelector('#principal');
+      principalSection.addEventListener('click', function(e) {
+        if (e.target.closest('.principal-container')) {
+          const popupId = 'principal';
+          if (popupContents[popupId]) {
+            popupTitle.textContent = popupContents[popupId].title;
+            popupBody.innerHTML = popupContents[popupId].content;
+            popupOverlay.style.display = 'flex';
+          }
+        }
+      });
+      
+      // Close popup when close button is clicked
+      closePopup.addEventListener('click', function() {
+        popupOverlay.style.display = 'none';
+      });
+      
+      // Close popup when clicking outside the content
+      popupOverlay.addEventListener('click', function(e) {
+        if (e.target === popupOverlay) {
+          popupOverlay.style.display = 'none';
+        }
+      });
+
+      // Chatbot functionality
+      const chatbotButton = document.getElementById('chatbotButton');
+      const chatbotContainer = document.getElementById('chatbotContainer');
+      const closeChatbot = document.getElementById('closeChatbot');
+
+      // Toggle chatbot visibility when button is clicked
+      chatbotButton.addEventListener('click', function() {
+        if (chatbotContainer.style.display === 'block') {
+          chatbotContainer.style.display = 'none';
+        } else {
+          chatbotContainer.style.display = 'block';
+          // Add a slight delay for smooth animation
+          setTimeout(() => {
+            chatbotContainer.style.opacity = '1';
+            chatbotContainer.style.transform = 'translateY(0)';
+          }, 10);
+        }
+      });
+
+      // Close chatbot when close button is clicked
+      closeChatbot.addEventListener('click', function() {
+        chatbotContainer.style.display = 'none';
+      });
+
+      // Close chatbot when clicking outside (except on the button)
+      document.addEventListener('click', function(e) {
+        if (!chatbotContainer.contains(e.target) && 
+            !chatbotButton.contains(e.target) && 
+            chatbotContainer.style.display === 'block') {
+          chatbotContainer.style.display = 'none';
+        }
+      });
+
+      // Make chatbot draggable on desktop
+      let isDragging = false;
+      let currentX;
+      let currentY;
+      let initialX;
+      let initialY;
+      let xOffset = 0;
+      let yOffset = 0;
+
+      const chatbotHeader = document.querySelector('.chatbot-header');
+      
+      chatbotHeader.addEventListener('mousedown', dragStart);
+      document.addEventListener('mousemove', drag);
+      document.addEventListener('mouseup', dragEnd);
+
+      function dragStart(e) {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+
+        if (e.target === chatbotHeader || e.target.classList.contains('chatbot-title')) {
+          isDragging = true;
+        }
+      }
+
+      function drag(e) {
+        if (isDragging) {
+          e.preventDefault();
+          currentX = e.clientX - initialX;
+          currentY = e.clientY - initialY;
+
+          xOffset = currentX;
+          yOffset = currentY;
+
+          setTranslate(currentX, currentY, chatbotContainer);
+        }
+      }
+
+      function dragEnd(e) {
+        initialX = currentX;
+        initialY = currentY;
+        isDragging = false;
+      }
+
+      function setTranslate(xPos, yPos, el) {
+        el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+      }
+    });
+  </script>
+</body>
+</html>
